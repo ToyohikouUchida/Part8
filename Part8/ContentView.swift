@@ -41,10 +41,23 @@ struct ContentView: View {
 struct ContentView2: View {
     @Binding var contentView2Count: Int
     var body: some View {
-        Button("+10") {
-            contentView2Count += 10
+        VStack{
+            Button("+10") {
+                contentView2Count += 10
+            }
+            .font(.title)
+            .padding()
+            Button("+50") {
+                contentView2Count += 50
+            }
+            .font(.title)
+            .padding()
+            Button("+100") {
+                contentView2Count += 100
+            }
+            .font(.title)
         }
-        .font(.title)    }
+    }
 }
 
 #Preview {
