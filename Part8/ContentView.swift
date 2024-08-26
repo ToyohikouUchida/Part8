@@ -8,17 +8,51 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var count = 0  // @Stateはstruct ContentView以下にいれる
+    @State var isShowContentView2 = false
+    
     var body: some View {
+
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            HStack {
+                Button("-"){
+
+                    // = count - 1
+                    count -= 1
+                }
+                Text("Counter: \(count)")
+                Button("+"){
+                    //count = count + 1 // １ずつ増やすのはインクリメント
+                    count += 1
+                }
+            }
+            .padding()
+            Button("ContentView2へ"){
+                 isShowContentView2 = true
+                
+            }        }
+        .font(.title)
+        .sheet(isPresented: $isShowContentView2) {
+            ContentView2(contentView2Count: $count)
         }
-        .padding()
     }
+}
+
+struct ContentView2: View {
+    @Binding var contentView2Count: Int
+    var body: some View {
+        Button("+10") {
+            contentView2Count += 10
+        }
+        .font(.title)    }
 }
 
 #Preview {
     ContentView()
 }
+/*
+#Preview {
+    ContentView2(count: $count)
+}
+
+*/
